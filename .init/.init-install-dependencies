@@ -1,0 +1,4 @@
+{
+    "command": "npm install",
+    "working_directory": "/home/kavia/workspace/code-generation/robot-control-and-monitoring-interface-3794-3803/robot_runner_frontend"
+}

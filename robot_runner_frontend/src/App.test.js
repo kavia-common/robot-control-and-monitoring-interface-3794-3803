@@ -1,8 +1,13 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
+import { DashboardProvider } from "./context/DashboardContext";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test("renders dashboard title", async () => {
+  render(
+    <DashboardProvider>
+      <App />
+    </DashboardProvider>
+  );
+
+  expect(screen.getByText(/Test Automation Dashboard/i)).toBeInTheDocument();
 });

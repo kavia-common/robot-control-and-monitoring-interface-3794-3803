@@ -1,47 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import "./theme.css";
+
+import SidebarProjects from "./components/SidebarProjects";
+import PassFailPie from "./components/PassFailPie";
+import StartButton from "./components/StartButton";
+import HistoryTable from "./components/HistoryTable";
+import TestCaseSelector from "./components/TestCaseSelector";
 
 // PUBLIC_INTERFACE
 function App() {
-  const [theme, setTheme] = useState('light');
-
-  // Effect to apply theme to document element
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
-  // PUBLIC_INTERFACE
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
-
+  /** Main application entry component rendering the Test Automation Dashboard (mock data only). */
   return (
-    <div className="App">
-      <header className="App-header">
-        <button 
-          className="theme-toggle" 
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-        >
-          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-        </button>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Current theme: <strong>{theme}</strong>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="AppShell">
+      <SidebarProjects />
+
+      <main className="Main">
+        <header className="TopBar">
+          <div>
+            <div className="PageTitle">Test Automation Dashboard</div>
+            <div className="PageSubtitle op-muted">
+              Mock execution, live status updates, and historical runs.
+            </div>
+          </div>
+        </header>
+
+        <section className="TopGrid">
+          <div className="TopLeft">
+            <PassFailPie />
+          </div>
+          <div className="TopRight">
+            <StartButton />
+            <div className="TopRightSpacer" />
+            <TestCaseSelector />
+          </div>
+        </section>
+
+        <section className="Bottom">
+          <HistoryTable />
+        </section>
+      </main>
     </div>
   );
 }
